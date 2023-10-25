@@ -25,8 +25,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 /**
  * @author Diego Mota
  */
-public class PaymentControllerTest extends AbstractRestControllerTest {
-    public static final String BASE_URL = "/accounts";
+public class AccountControllerTest extends AbstractRestControllerTest {
+
     @InjectMocks
     private AccountController accountController;
 
@@ -80,7 +80,7 @@ public class PaymentControllerTest extends AbstractRestControllerTest {
 
         when(accountService.findById(anyInt())).thenReturn(account);
 
-        mockMvc.perform(get(PaymentControllerTest.BASE_URL.concat("/1"))
+        mockMvc.perform(get(AccountController.BASE_URL.concat("/1"))
                 .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id", equalTo("1")))
