@@ -10,7 +10,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.transactions.dto.AccountDTO;
+import com.transactions.dto.request.AccountRequestDTO;
+import com.transactions.dto.response.AccountResponseDTO;
 import com.transactions.exception.ResourceNotFoundException;
 import com.transactions.service.AccountService;
 import org.junit.Before;
@@ -48,7 +49,7 @@ public class AccountControllerTest extends AbstractRestControllerTest {
 
     @Test
     public void createAccount() throws Exception {
-        AccountDTO account = AccountDTO.builder()
+        AccountRequestDTO account = AccountRequestDTO.builder()
             .documentNumber("123456")
             .build();
 
@@ -73,7 +74,7 @@ public class AccountControllerTest extends AbstractRestControllerTest {
 
     @Test
     public void findAccountById() throws Exception {
-        AccountDTO account = AccountDTO.builder()
+        AccountResponseDTO account = AccountResponseDTO.builder()
             .id("1")
             .documentNumber("123456")
             .build();
@@ -83,8 +84,8 @@ public class AccountControllerTest extends AbstractRestControllerTest {
         mockMvc.perform(get(AccountController.BASE_URL.concat("/1"))
                 .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.id", equalTo("1")))
-            .andExpect(jsonPath("$.documentNumber", equalTo("123456")));
+            .andExpect(jsonPath("$.account_id", equalTo("1")))
+            .andExpect(jsonPath("$.document_number", equalTo("123456")));
     }
 
 }

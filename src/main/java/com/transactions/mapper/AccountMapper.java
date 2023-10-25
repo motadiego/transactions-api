@@ -1,7 +1,8 @@
 package com.transactions.mapper;
 
 import com.transactions.domain.Account;
-import com.transactions.dto.AccountDTO;
+import com.transactions.dto.request.AccountRequestDTO;
+import com.transactions.dto.response.AccountResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -14,9 +15,9 @@ import org.mapstruct.factory.Mappers;
 public interface AccountMapper {
 
 	AccountMapper INSTANCE = Mappers.getMapper(AccountMapper.class);
+
+	AccountResponseDTO accountToAccountResponseDTO(Account account);
 	
-	AccountDTO accountToAccountDTO(Account account);
-	
-	Account accountDTOToAccount(AccountDTO accountDTO);
+	Account accountRequestDTOToAccount(AccountRequestDTO accountRequestDTO);
 	
 }

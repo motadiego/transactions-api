@@ -2,9 +2,8 @@ package com.transactions.mapper;
 
 import com.transactions.domain.OperationType;
 import com.transactions.domain.Transaction;
-import com.transactions.dto.TransactionDTO;
+import com.transactions.dto.TransactionRequestDTO;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -16,9 +15,9 @@ public interface TransactionMapper {
     TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
 
 
-    TransactionDTO transactionToTransactionDTO(Transaction transaction);
+    TransactionRequestDTO transactionToTransactionRequestDTO(Transaction transaction);
 
-    Transaction transactionDTOToTransaction(TransactionDTO transactionDTO);
+    Transaction transactionRequestDTOToTransaction(TransactionRequestDTO transactionRequestDTO);
 
     default OperationType mapOperationType(String operationTypeCode) {
         for (OperationType enumValue : OperationType.values()) {

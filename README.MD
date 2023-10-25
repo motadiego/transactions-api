@@ -12,7 +12,7 @@ $ git clone https://github.com/motadiego/transactions-api.git transactions_diego
 
 $ cd transactions_diego
 
-$ mvn install -DskipTests
+$ mvn install
 
 $ docker-compose up --build
 

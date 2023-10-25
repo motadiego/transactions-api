@@ -1,6 +1,6 @@
 package com.transactions.controller;
 
-import com.transactions.dto.TransactionDTO;
+import com.transactions.dto.TransactionRequestDTO;
 import com.transactions.service.TransactionService;
 import java.net.URI;
 import org.springframework.http.HttpHeaders;
@@ -28,8 +28,8 @@ public class TransactionController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createAccount(@RequestBody TransactionDTO transactionDTO) {
-        Integer id = transactionService.create(transactionDTO);
+    public ResponseEntity<Void> createAccount(@RequestBody TransactionRequestDTO transactionRequestDTO) {
+        Integer id = transactionService.create(transactionRequestDTO);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(id).toUri();
         HttpHeaders responseHeaders = new HttpHeaders();

@@ -8,7 +8,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.transactions.domain.Account;
-import com.transactions.dto.AccountDTO;
+import com.transactions.dto.request.AccountRequestDTO;
+import com.transactions.dto.response.AccountResponseDTO;
 import com.transactions.exception.ResourceNotFoundException;
 import com.transactions.mapper.AccountMapper;
 import com.transactions.repository.AccountRepository;
@@ -39,13 +40,16 @@ public class AccountServiceTest {
 
     @Test
     public void createAccount() throws Exception {
+        Account account = Account.builder().id(1).documentNumber("123456").build();
         Integer expectedResult = 1;
-        AccountDTO accountDTO = AccountDTO.builder()
-            .id("1")
+
+        AccountRequestDTO accountRequestDTO = AccountRequestDTO.builder()
             .documentNumber("123456")
             .build();
 
-        Integer result = accountService.create(accountDTO);
+        when(accountRepository.save(any(Account.class))).thenReturn(account);
+
+        Integer result = accountService.create(accountRequestDTO);
 
         assertEquals(expectedResult, result);
         verify(accountRepository, times(1)).save(any(Account.class));
@@ -57,9 +61,9 @@ public class AccountServiceTest {
 
         when(accountRepository.findById(anyInt())).thenReturn(Optional.ofNullable(account));
 
-        AccountDTO accountDTO = accountService.findById(1);
+        AccountResponseDTO accountResponseDTO = accountService.findById(1);
 
-        assertEquals("1", accountDTO.getId());
+        assertEquals("1", accountResponseDTO.getId());
         verify(accountRepository, times(1)).findById(any());
     }
 
@@ -68,7 +72,7 @@ public class AccountServiceTest {
     public void findByIdThrowsException()  {
         when(accountRepository.findById(anyInt())).thenThrow(ResourceNotFoundException.class);
 
-        AccountDTO accountDTO = accountService.findById(1);
+        AccountResponseDTO accountResponseDTO = accountService.findById(1);
 
         verify(accountRepository, times(1)).findById(any());
     }

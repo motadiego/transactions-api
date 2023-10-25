@@ -3,7 +3,8 @@ package com.transactions.mapper;
 import static org.junit.Assert.assertEquals;
 
 import com.transactions.domain.Account;
-import com.transactions.dto.AccountDTO;
+import com.transactions.dto.request.AccountRequestDTO;
+import com.transactions.dto.response.AccountResponseDTO;
 import org.junit.Test;
 
 /**
@@ -19,28 +20,26 @@ public class AccountMapperTest {
     private AccountMapper accountMapper = AccountMapper.INSTANCE;
 
     @Test
-    public void accountToAccountDTO() {
+    public void accountToAccountResponseDTO() {
         Account account = Account.builder()
             .id(ID)
             .documentNumber(DOCUMENT_NUMBER)
             .build();
 
-        AccountDTO accountDTO = accountMapper.accountToAccountDTO(account);
+        AccountResponseDTO accountResponseDTO = accountMapper.accountToAccountResponseDTO(account);
 
-        assertEquals(String.valueOf(ID), accountDTO.getId());
-        assertEquals(DOCUMENT_NUMBER, accountDTO.getDocumentNumber());
+        assertEquals(String.valueOf(ID), accountResponseDTO.getId());
+        assertEquals(DOCUMENT_NUMBER, accountResponseDTO.getDocumentNumber());
     }
 
     @Test
-    public void accountDTOToAccount() {
-        AccountDTO accountDTO = AccountDTO.builder()
-            .id(String.valueOf(ID))
+    public void accountRequestDTOToAccount() {
+        AccountRequestDTO accountRequestDTO = AccountRequestDTO.builder()
             .documentNumber(DOCUMENT_NUMBER)
             .build();
 
-        Account account = accountMapper.accountDTOToAccount(accountDTO);
+        Account account = accountMapper.accountRequestDTOToAccount(accountRequestDTO);
 
-        assertEquals(ID, account.getId());
         assertEquals(DOCUMENT_NUMBER, account.getDocumentNumber());
     }
 

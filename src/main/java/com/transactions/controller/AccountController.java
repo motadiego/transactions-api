@@ -1,6 +1,7 @@
 package com.transactions.controller;
 
-import com.transactions.dto.AccountDTO;
+import com.transactions.dto.request.AccountRequestDTO;
+import com.transactions.dto.response.AccountResponseDTO;
 import com.transactions.service.AccountService;
 import java.net.URI;
 import org.springframework.http.HttpHeaders;
@@ -30,8 +31,8 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createAccount(@RequestBody AccountDTO accountDTO) {
-        Integer id = accountService.create(accountDTO);
+    public ResponseEntity<Void> createAccount(@RequestBody AccountRequestDTO accountRequestDTO) {
+        Integer id = accountService.create(accountRequestDTO);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(id).toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
@@ -40,7 +41,7 @@ public class AccountController {
     }
 
     @GetMapping(path = "/{id}")
-    public AccountDTO findAccountById(@PathVariable("id") Integer id) {
+    public AccountResponseDTO findAccountById(@PathVariable("id") Integer id) {
         return accountService.findById(id);
     }
 

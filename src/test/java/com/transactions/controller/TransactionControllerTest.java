@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.transactions.domain.OperationType;
-import com.transactions.dto.TransactionDTO;
+import com.transactions.dto.TransactionRequestDTO;
 import com.transactions.service.TransactionService;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,18 +44,18 @@ public class TransactionControllerTest extends AbstractRestControllerTest {
 
     @Test
     public void createTransaction() throws Exception {
-        TransactionDTO transactionDTO = TransactionDTO.builder()
+        TransactionRequestDTO transactionRequestDTO = TransactionRequestDTO.builder()
             .id("1")
             .accountId("1")
             .amount("10.0")
             .operationType(String.valueOf(OperationType.PAGAMENTO.getCode()))
             .build();
 
-        when(transactionService.create(transactionDTO)).thenReturn(1);
+        when(transactionService.create(transactionRequestDTO)).thenReturn(1);
 
         mockMvc.perform(post(TransactionController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(transactionDTO)))
+                .content(asJsonString(transactionRequestDTO)))
             .andExpect(status().isCreated())
             .andExpect(header().string("location", containsString("/transactions/1")));
     }

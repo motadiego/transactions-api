@@ -2,11 +2,9 @@ package com.transactions.mapper;
 
 import static org.junit.Assert.assertEquals;
 
-import com.transactions.domain.Account;
 import com.transactions.domain.OperationType;
 import com.transactions.domain.Transaction;
-import com.transactions.dto.AccountDTO;
-import com.transactions.dto.TransactionDTO;
+import com.transactions.dto.TransactionRequestDTO;
 import java.math.BigDecimal;
 import org.junit.Test;
 
@@ -29,7 +27,7 @@ public class TransactionMapperTest  {
 
 
     @Test
-    public void transacationToTransactionDTO() {
+    public void transacationToTransactionRequestDTO() {
         Transaction transaction = Transaction.builder()
             .id(ID)
             .accountId(ACCOUNT_ID)
@@ -37,24 +35,25 @@ public class TransactionMapperTest  {
             .amount(AMOUNT)
             .build();
 
-        TransactionDTO transactionDTO = transactionMapper.transactionToTransactionDTO(transaction);
+        TransactionRequestDTO transactionRequestDTO = transactionMapper.transactionToTransactionRequestDTO(transaction);
 
-        assertEquals(String.valueOf(ID), transactionDTO.getId());
-        assertEquals(String.valueOf(ACCOUNT_ID), transactionDTO.getAccountId());
-        assertEquals(OPERATION_TYPE.toString(), transactionDTO.getOperationType());
-        assertEquals(AMOUNT.toString(), transactionDTO.getAmount());
+        assertEquals(String.valueOf(ID), transactionRequestDTO.getId());
+        assertEquals(String.valueOf(ACCOUNT_ID), transactionRequestDTO.getAccountId());
+        assertEquals(OPERATION_TYPE.toString(), transactionRequestDTO.getOperationType());
+        assertEquals(AMOUNT.toString(), transactionRequestDTO.getAmount());
     }
 
     @Test
-    public void transacationDTOToTransaction() {
-        TransactionDTO transactionDTO = TransactionDTO.builder()
+    public void transacationRequestDTOToTransaction() {
+        TransactionRequestDTO transactionRequestDTO = TransactionRequestDTO.builder()
             .id(String.valueOf(ID))
             .accountId(String.valueOf(ACCOUNT_ID))
             .operationType(String.valueOf(OPERATION_TYPE.getCode()))
             .amount(AMOUNT.toString())
             .build();
 
-        Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
+        Transaction transaction = transactionMapper.transactionRequestDTOToTransaction(
+            transactionRequestDTO);
 
         assertEquals(ID, transaction.getId());
         assertEquals(ACCOUNT_ID, transaction.getAccountId());
