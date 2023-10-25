@@ -1,4 +1,4 @@
-**Payments API**
+**Transactions API**
 
 Author: Diego Mota
 
