@@ -1,0 +1,10 @@
+com\transactions\controller\PaymentControllerTest.class
+com\transactions\processor\CompraParceladaProcessorTest.class
+com\transactions\processor\SaqueProcessorTest.class
+com\transactions\mapper\TransactionMapperTest.class
+com\transactions\mapper\AccountMapperTest.class
+com\transactions\processor\CompraAVistaProcessorTest.class
+com\transactions\processor\TransactionProcessorFactoryTest.class
+com\transactions\processor\PagamentoProcessorTest.class
+com\transactions\challenge\TransactionsApplicationTests.class
+com\transactions\controller\AbstractRestControllerTest.class

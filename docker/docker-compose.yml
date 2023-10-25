@@ -1,0 +1,17 @@
+version: "3.6"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: transactions
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "transactions", "-U", "postgres" ]
+      interval: 2s
+      timeout: 20s
+      retries: 10
+
