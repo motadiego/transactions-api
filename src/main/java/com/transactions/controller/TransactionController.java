@@ -1,6 +1,6 @@
 package com.transactions.controller;
 
-import com.transactions.dto.TransactionRequestDTO;
+import com.transactions.dto.request.TransactionRequestDTO;
 import com.transactions.service.TransactionService;
 import java.net.URI;
 import org.springframework.http.HttpHeaders;

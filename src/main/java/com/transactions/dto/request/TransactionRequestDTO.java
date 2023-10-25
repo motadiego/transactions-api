@@ -1,4 +1,4 @@
-package com.transactions.dto;
+package com.transactions.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
@@ -16,8 +16,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TransactionRequestDTO {
 
-    private String id;
-
     @JsonProperty("account_id")
     private String accountId;
 
@@ -25,7 +23,5 @@ public class TransactionRequestDTO {
     private String operationType;
 
     private String amount;
-
-    private LocalDateTime eventDate;
 
 }

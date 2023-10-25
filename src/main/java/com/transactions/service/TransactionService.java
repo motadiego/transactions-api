@@ -1,7 +1,7 @@
 package com.transactions.service;
 
 import com.transactions.domain.Transaction;
-import com.transactions.dto.TransactionRequestDTO;
+import com.transactions.dto.request.TransactionRequestDTO;
 import com.transactions.mapper.TransactionMapper;
 import com.transactions.processor.TransactionProcessorFactory;
 import com.transactions.repository.TransactionRepository;
@@ -25,13 +25,12 @@ public class TransactionService {
     }
 
     public Integer create(TransactionRequestDTO transactionRequestDTO) {
-        Transaction transaction = transactionMapper.transactionRequestDTOToTransaction(
-            transactionRequestDTO);
+        Transaction transaction = transactionMapper.transactionRequestDTOToTransaction(transactionRequestDTO);
         transaction.setEventDate(LocalDateTime.now());
         TransactionProcessorFactory
             .getProcessor(transaction.getOperationType())
             .process(transaction);
-        transactionRepository.save(transaction);
+        transaction = transactionRepository.save(transaction);
         return transaction.getId();
     }
 

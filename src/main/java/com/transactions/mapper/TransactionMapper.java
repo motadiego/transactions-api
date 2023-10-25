@@ -2,7 +2,7 @@ package com.transactions.mapper;
 
 import com.transactions.domain.OperationType;
 import com.transactions.domain.Transaction;
-import com.transactions.dto.TransactionRequestDTO;
+import com.transactions.dto.request.TransactionRequestDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -13,9 +13,6 @@ import org.mapstruct.factory.Mappers;
 public interface TransactionMapper {
 
     TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
-
-
-    TransactionRequestDTO transactionToTransactionRequestDTO(Transaction transaction);
 
     Transaction transactionRequestDTOToTransaction(TransactionRequestDTO transactionRequestDTO);
 

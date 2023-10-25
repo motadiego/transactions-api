@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.transactions.domain.OperationType;
-import com.transactions.dto.TransactionRequestDTO;
+import com.transactions.dto.request.TransactionRequestDTO;
 import com.transactions.service.TransactionService;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,7 +45,6 @@ public class TransactionControllerTest extends AbstractRestControllerTest {
     @Test
     public void createTransaction() throws Exception {
         TransactionRequestDTO transactionRequestDTO = TransactionRequestDTO.builder()
-            .id("1")
             .accountId("1")
             .amount("10.0")
             .operationType(String.valueOf(OperationType.PAGAMENTO.getCode()))

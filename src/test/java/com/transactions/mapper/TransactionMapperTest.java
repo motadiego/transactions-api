@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.transactions.domain.OperationType;
 import com.transactions.domain.Transaction;
-import com.transactions.dto.TransactionRequestDTO;
+import com.transactions.dto.request.TransactionRequestDTO;
 import java.math.BigDecimal;
 import org.junit.Test;
 
@@ -25,28 +25,9 @@ public class TransactionMapperTest  {
 
     private TransactionMapper transactionMapper = TransactionMapper.INSTANCE;
 
-
-    @Test
-    public void transacationToTransactionRequestDTO() {
-        Transaction transaction = Transaction.builder()
-            .id(ID)
-            .accountId(ACCOUNT_ID)
-            .operationType(OPERATION_TYPE)
-            .amount(AMOUNT)
-            .build();
-
-        TransactionRequestDTO transactionRequestDTO = transactionMapper.transactionToTransactionRequestDTO(transaction);
-
-        assertEquals(String.valueOf(ID), transactionRequestDTO.getId());
-        assertEquals(String.valueOf(ACCOUNT_ID), transactionRequestDTO.getAccountId());
-        assertEquals(OPERATION_TYPE.toString(), transactionRequestDTO.getOperationType());
-        assertEquals(AMOUNT.toString(), transactionRequestDTO.getAmount());
-    }
-
     @Test
     public void transacationRequestDTOToTransaction() {
         TransactionRequestDTO transactionRequestDTO = TransactionRequestDTO.builder()
-            .id(String.valueOf(ID))
             .accountId(String.valueOf(ACCOUNT_ID))
             .operationType(String.valueOf(OPERATION_TYPE.getCode()))
             .amount(AMOUNT.toString())
@@ -55,7 +36,6 @@ public class TransactionMapperTest  {
         Transaction transaction = transactionMapper.transactionRequestDTOToTransaction(
             transactionRequestDTO);
 
-        assertEquals(ID, transaction.getId());
         assertEquals(ACCOUNT_ID, transaction.getAccountId());
         assertEquals(OPERATION_TYPE, transaction.getOperationType());
         assertEquals(AMOUNT, transaction.getAmount());
