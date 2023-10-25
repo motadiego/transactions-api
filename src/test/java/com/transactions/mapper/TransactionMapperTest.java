@@ -36,7 +36,7 @@ public class TransactionMapperTest  {
         Transaction transaction = transactionMapper.transactionRequestDTOToTransaction(
             transactionRequestDTO);
 
-        assertEquals(ACCOUNT_ID, transaction.getAccountId());
+        assertEquals(ACCOUNT_ID, transaction.getAccount().getId());
         assertEquals(OPERATION_TYPE, transaction.getOperationType());
         assertEquals(AMOUNT, transaction.getAmount());
     }

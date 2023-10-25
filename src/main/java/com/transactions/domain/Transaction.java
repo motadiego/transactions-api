@@ -36,8 +36,9 @@ public class Transaction {
     private Integer id;
 
     @NotNull
-    @Column(name = "account_id")
-    private Integer accountId;
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
 
     @Enumerated(EnumType.STRING)
     @NotNull

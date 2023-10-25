@@ -31,7 +31,6 @@ public class AccountService {
     public AccountResponseDTO findById(Integer id) {
         return accountMapper.accountToAccountResponseDTO(accountRepository
             .findById(id)
-            .orElseThrow(ResourceNotFoundException::new));
+            .orElseThrow(() -> new ResourceNotFoundException("Resource Not Found")));
     }
-
 }
