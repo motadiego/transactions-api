@@ -12,11 +12,9 @@ $ git clone https://github.com/motadiego/spring-transactions-api.git transaction
 
 $ cd transactions_diego
 
-$ mvn clean package
+$ mvn install -DskipTests
 
-$ docker-compose up
-
-$ mvn spring-boot:run
+$ docker-compose up --build
 
 **Documentation**
 
