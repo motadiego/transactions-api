@@ -8,7 +8,7 @@ This is a Maven project, builded using technologies such as Java 11, JUnit 4, Sp
 
 **How to build**
 
-$ git clone https://github.com/motadiego/spring-transactions-api.git transactions_diego
+$ git clone https://github.com/motadiego/transactions-api.git transactions_diego
 
 $ cd transactions_diego
 
