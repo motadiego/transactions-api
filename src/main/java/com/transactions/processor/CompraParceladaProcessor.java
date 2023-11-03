@@ -1,6 +1,7 @@
 package com.transactions.processor;
 
 import com.transactions.domain.Transaction;
+import com.transactions.repository.AccountRepository;
 import java.math.BigDecimal;
 
 /**
@@ -22,5 +23,5 @@ public class CompraParceladaProcessor implements TransactionProcessor {
 		transaction.setAmount(negativeAmount);
 		return transaction;
 	}
-	
+
 }

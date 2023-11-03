@@ -1,5 +1,6 @@
 package com.transactions.domain;
 
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,4 +25,6 @@ public class Account {
     private Integer id;
 
     private String documentNumber;
+
+    private BigDecimal availableCreditLimit;
 }

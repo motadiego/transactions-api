@@ -1,6 +1,7 @@
 package com.transactions.processor;
 
 import com.transactions.domain.Transaction;
+import com.transactions.repository.AccountRepository;
 import java.math.BigDecimal;
 
 /**
@@ -19,7 +20,11 @@ public class PagamentoProcessor implements TransactionProcessor {
     public Transaction process(Transaction transaction) {
         BigDecimal positiveAmount = transaction.getAmount();
         transaction.setAmount(positiveAmount);
+
+        transaction.getAccount().setAvailableCreditLimit(transaction.getAccount().getAvailableCreditLimit().add(transaction.getAmount()));
+
         return transaction;
     }
+
 
 }

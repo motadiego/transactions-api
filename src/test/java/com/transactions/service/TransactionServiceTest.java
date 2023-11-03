@@ -46,7 +46,7 @@ public class TransactionServiceTest {
 
     @Test
     public void createTransaction() throws Exception {
-        Account account = Account.builder().id(1).build();
+        Account account = Account.builder().id(1).documentNumber("123456").availableCreditLimit(new BigDecimal(100)).build();
         Transaction transaction = Transaction.builder().id(1).account(account)
             .operationType(OperationType.PAGAMENTO).amount(new BigDecimal(10.0)).build();
         Integer expectedResult = 1;

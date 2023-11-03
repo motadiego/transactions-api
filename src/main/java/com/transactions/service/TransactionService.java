@@ -40,6 +40,8 @@ public class TransactionService {
             .getProcessor(transaction.getOperationType())
             .process(transaction);
 
+        accountRepository.save(transaction.getAccount());
+
         transaction = transactionRepository.save(transaction);
         return transaction.getId();
     }

@@ -1,5 +1,6 @@
 package com.transactions.controller;
 
+import com.transactions.exception.ValidationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +26,11 @@ public class RestResponseEntityExceptionHandler {
     public ResponseEntity<Object> IllegalArgumentException(Exception exception, WebRequest request) {
         return new ResponseEntity<Object>(exception.getMessage(), new HttpHeaders(),
             HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({ValidationException.class})
+    public ResponseEntity<Object> validationException(Exception exception, WebRequest request) {
+        return new ResponseEntity<Object>(exception.getMessage(), new HttpHeaders(),
+            HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }
